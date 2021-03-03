@@ -9,13 +9,13 @@ It performs the following transforms to provide a better developer experience wh
 
 ## Installation
 
-Using svelte-loader, in `webpack.config.js`
+Using `svelte-loader`, in `webpack.config.js`:
 
 ```js
-const svelteNativePreprocessor = require("./svelte-native-preprocessor");
+const SvelteNodeGUIPreprocessor = require("@nodegui/svelte-nodegui-preprocessor");
 ```
 
-and where the `svelte-loader` is registered add it to the options:
+Where the `svelte-loader` is registered, add the preprocessor to `options.preprocess`:
 
 ```js
  {
@@ -25,7 +25,7 @@ and where the `svelte-loader` is registered add it to the options:
         { 
             loader: 'svelte-loader',
             options: {
-                preprocess: svelteNativePreprocessor()
+                preprocess: SvelteNodeGUIPreprocessor()
             }
         }
     ]

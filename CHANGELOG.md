@@ -1,5 +1,13 @@
 ## Changes
 
+0.1.0-alpha 2021-03-03
+    - Remove the changing of `bind:text="{email}"` to `text="{email}" on:textChanged="{e => email = e.value}"`, which is a NativeScript-specific concept. We can refer back to commits before this date if we ever determine a NodeGUI equivalent to implementing attribute bindings.
+    - Change `<svelte:options namespace="xmlns" />` to `<svelte:options namespace="foreign" />`.
+
+### Svelte Native Preprocessor
+
+The changelog up until we forked the `@nodegui/svelte-nodegui-preprocessor` repo from [svelte-native-preprocessor](https://github.com/halfnelson/svelte-native-preprocessor).
+
 0.2.0 2020-07-24
     - use htmlxparser instead of svelte to unblock typescript support
 
