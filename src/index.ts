@@ -60,20 +60,6 @@ export default function preprocess() {
                     insertAttributeToElement(node, 'namespace="foreign"', src, out)
                 }
             };
-
-            const expandBindOnTagElements = (node: Node) => {
-                if (node.type == 'Element') {
-                    for (let binding of (node.attributes || []).filter((a: any) => a.type == 'Binding')) {
-                        let prop = binding.name;
-                        if (prop == "this") 
-                            continue; 
-                        let variable = src.substring(binding.expression.start, binding.expression.end); 
-                        console.log(`node binding ${prop} = ${variable}` )
-                        //remove the bind
-                        out.overwrite(binding.start, binding.end, `${prop}="{${variable}}" on:${prop}Change="{(e) => ${variable} = e.value}"` )
-                    }
-                }
-            };
             
             const appendOptionWithNamespace = () => {
                 out.prepend('<svelte:options namespace="foreign"/>')
@@ -92,7 +78,6 @@ export default function preprocess() {
             walk(ast, { 
                 enter: (node: Node, parent: Node, prop: string, index: number) => {
                     addXmlNamespaceToSvelteOptions(node);
-                    expandBindOnTagElements(node);
                 }
             })
   

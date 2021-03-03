@@ -5,7 +5,6 @@ A preprocessor for [Svelte NodeGUI](https://github.com/nodegui/svelte-nodegui); 
 It performs the following transforms to provide a better developer experience when using Svelte NodeGUI:
 
  - [x] Adds `<svelte:options namespace="foreign" />` to the component, ensuring the generated code is compatible with Svelte NodeGUI
- - [x] Changes `bind:text="{email}"` to `text="{email}" on:textChanged="{e => email = e.value}"`
  
 
 ## Installation
