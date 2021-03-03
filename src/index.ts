@@ -15,24 +15,6 @@ export interface SveltePreprocessorDefinition {
     markup: (source: SveltePreprocessorInput) => SveltePreprocessorOutput;
 }
 
-type NodeVisitorAction = (node: Node, parents: Node[], index: number) => void;
-
-function walkNodes(node: Node, action: NodeVisitorAction, parentNodes: Node[] = [], current_index: number = 0) {
-    try {
-        action(node, parentNodes, current_index)
-    } catch (e) {
-        throw new Error(`error walking ${node.type} node at depth ${parentNodes.length} index ${current_index} \n ${e.message}`);
-    }
-
-    if (!node.children)
-        return;
-
-    let parents = parentNodes.concat(node);
-    for (let index of node.children.keys()) {
-        walkNodes(node.children[index], action, parents, index)
-    }
-}
-
 function isWhiteSpace(char: string) {
     return char == ' ' || char == '\n' || char == '\t' || char == '\r';
 }
