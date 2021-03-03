@@ -1,10 +1,10 @@
-# Svelte Native Preprocessor
+# Svelte NodeGUI Preprocessor
 
-A preprocessor for [Svelte-Native](https://github.com/halfnelson/svelte-native).
+A preprocessor for [Svelte NodeGUI](https://github.com/nodegui/svelte-nodegui); forked from [halfnelson](https://github.com/halfnelson)'s [svelte-native-preprocessor](https://github.com/halfnelson/svelte-native-preprocessor) for [Svelte Native](https://github.com/halfnelson/svelte-native).
 
-It performs the following transforms to provide a better developer experience when using Svelte-Native:
+It performs the following transforms to provide a better developer experience when using Svelte NodeGUI:
 
- - [x] Adds `<svelte:options namespace="xmlns" />` to the component, ensuring the generated code is compatible with svelte-native
+ - [x] Adds `<svelte:options namespace="foreign" />` to the component, ensuring the generated code is compatible with Svelte NodeGUI
  - [x] Changes `bind:text="{email}"` to `text="{email}" on:textChanged="{e => email = e.value}"`
  
 
