@@ -1,22 +1,27 @@
 {
-  "name": "svelte-native-preprocessor",
-  "version": "0.2.0",
-  "author": "David Pershouse",
+  "name": "@nodegui/svelte-nodegui-preprocessor",
+  "version": "0.1.0-alpha",
+  "author": "Saurav Sahu <mrsauravsahu@outlook.com> (https://mrsauravsahu.github.io)",
+  "contributors": [
+    "Saurav Sahu <mrsauravsahu@outlook.com> (https://mrsauravsahu.github.io)",
+    "David Pershouse",
+    "Jamie Birch (https://twitter.com/LinguaBrowse)"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/halfnelson/svelte-native-preprocessor.git"
+    "url": "https://github.com/nodegui/svelte-nodegui-preprocessor.git"
   },
-  "homepage": "https://github.com/halfnelson/svelte-native-preprocessor",
+  "homepage": "https://github.com/nodegui/svelte-nodegui-preprocessor",
   "keywords": [
-    "nativescript",
+    "nodegui",
     "svelte",
-    "svelte-native"
+    "svelte-nodegui"
   ],
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "peerDependencies": {
-    "svelte": "^3.4.1"
+    "svelte": "^3.24.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
@@ -30,7 +35,7 @@
     "rollup-plugin-node-resolve": "5.0.0",
     "rollup-plugin-typescript2": "^0.21.1",
     "sucrase": "^3.10.1",
-    "svelte": "^3.24.0",
+    "svelte": "^3.24.1",
     "typescript": "3.4.5"
   },
   "scripts": {

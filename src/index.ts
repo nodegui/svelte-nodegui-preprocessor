@@ -15,24 +15,6 @@ export interface SveltePreprocessorDefinition {
     markup: (source: SveltePreprocessorInput) => SveltePreprocessorOutput;
 }
 
-type NodeVisitorAction = (node: Node, parents: Node[], index: number) => void;
-
-function walkNodes(node: Node, action: NodeVisitorAction, parentNodes: Node[] = [], current_index: number = 0) {
-    try {
-        action(node, parentNodes, current_index)
-    } catch (e) {
-        throw new Error(`error walking ${node.type} node at depth ${parentNodes.length} index ${current_index} \n ${e.message}`);
-    }
-
-    if (!node.children)
-        return;
-
-    let parents = parentNodes.concat(node);
-    for (let index of node.children.keys()) {
-        walkNodes(node.children[index], action, parents, index)
-    }
-}
-
 function isWhiteSpace(char: string) {
     return char == ' ' || char == '\n' || char == '\t' || char == '\r';
 }
@@ -60,20 +42,6 @@ export default function preprocess() {
                     insertAttributeToElement(node, 'namespace="foreign"', src, out)
                 }
             };
-
-            const expandBindOnTagElements = (node: Node) => {
-                if (node.type == 'Element') {
-                    for (let binding of (node.attributes || []).filter((a: any) => a.type == 'Binding')) {
-                        let prop = binding.name;
-                        if (prop == "this") 
-                            continue; 
-                        let variable = src.substring(binding.expression.start, binding.expression.end); 
-                        console.log(`node binding ${prop} = ${variable}` )
-                        //remove the bind
-                        out.overwrite(binding.start, binding.end, `${prop}="{${variable}}" on:${prop}Change="{(e) => ${variable} = e.value}"` )
-                    }
-                }
-            };
             
             const appendOptionWithNamespace = () => {
                 out.prepend('<svelte:options namespace="foreign"/>')
@@ -92,7 +60,6 @@ export default function preprocess() {
             walk(ast, { 
                 enter: (node: Node, parent: Node, prop: string, index: number) => {
                     addXmlNamespaceToSvelteOptions(node);
-                    expandBindOnTagElements(node);
                 }
             })
   
